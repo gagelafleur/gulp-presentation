@@ -1,0 +1,19 @@
+{
+  "name": "gulp-presentation",
+  "version": "1.0.0",
+  "description": "759 Gulp Presentation",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/gagelafleur/gulp-presentation.git"
+  },
+  "author": "Gage LaFleur",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/gagelafleur/gulp-presentation/issues"
+  },
+  "homepage": "https://github.com/gagelafleur/gulp-presentation#readme"
+}
