@@ -1,0 +1,36 @@
+{
+  "name": "npm-build-boilerplate",
+  "version": "1.0.0",
+  "scripts": {
+    "sass": "node-sass --source-map true --output-style compressed -o assets/dist/css assets/src/scss",
+    "autoprefixer": "postcss -u autoprefixer -r assets/dist/css/*.css",
+    "build:css": "npm run sass && npm run autoprefixer",
+    "lint": "jshint assets/src/js/**.js",
+    "uglify": "mkdir -p assets/dist/js && uglifyjs assets/src/js/*.js -m -o assets/dist/js/main.js && uglifyjs assets/src/js/*.js -m -c -o assets/dist/js/main.min.js",
+    "build:js": "npm run lint && npm run copyjs",
+    "imagemin": "imagemin assets/src/img/* --out-dir=assets/dist/img",
+    "build:images": "npm run imagemin",
+    "copyfonts": "copyfiles -f assets/src/fonts/* assets/dist/fonts",
+    "copyjs": "copyfiles -f assets/src/js/* assets/dist/js",
+    "build:fonts": "npm run copyfonts",
+    "build:all": "npm run build:css && npm run build:js && npm run build:images && npm run build:fonts",
+    "serve": "browser-sync start --server --files 'assets/dist/css/*.css, assets/dist/js/*.js'",
+    "watch:css": "onchange 'assets/src/scss/*.scss' -- npm run build:css",
+    "watch:js": "onchange 'assets/src/js/*.js' -- npm run build:js",
+    "watch:all": "parallelshell 'npm run watch:css' 'npm run watch:js'",
+    "build-watch": "npm set progress=false && npm run build:all && npm run watch:all",
+    "clean": "rm -r assets/dist/*"
+  },
+  "devDependencies": {
+    "autoprefixer": "^7.1.5",
+    "bootstrap": "^4.0.0-alpha.6",
+    "copyfiles": "^1.2.0",
+    "imagemin-cli": "^3.0.0",
+    "jshint": "latest",
+    "node-sass": "^4.5.3",
+    "onchange": "^3.2.1",
+    "parallelshell": "^3.0.1",
+    "postcss-cli": "^4.1.1",
+    "uglify-js": "^3.1.3"
+  }
+}

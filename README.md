@@ -11,8 +11,27 @@ make assets dirs
 make gulpfile
 
 todo:
-install nom packages
 
 talk about package.json
 
 mention .gitignore
+
+
+
+https://www.npmjs.com/
+
+
+talk about require for packages in gulpfile and
+
+
+gulp File:
+
+sass
+js+jsHint
+imgcompress
+clean tasks
+slack setup
+
+autoreload
+
+npm init
