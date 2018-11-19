@@ -29,7 +29,6 @@ var	minifyCSS			= false,
 	paths = {
 	    js: [assetsSrcPathJs+'vendor/*.js', assetsSrcPathJs+'active-modules/*.js', assetsSrcPathJs+'page-specific/*.js']
 	},
-	//MY_SLACK_WEBHOOK_URL = 'https://hooks.slack.com/services/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',
 	os = require('os');
 	/*slack = require('gulp-slack')({
     	url: MY_SLACK_WEBHOOK_URL,
