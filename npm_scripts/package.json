@@ -1,5 +1,5 @@
 {
-  "name": "npm-build-boilerplate",
+  "name": "node-package-manager-scripts",
   "version": "1.0.0",
   "scripts": {
     "sass": "node-sass --source-map true --output-style compressed -o assets/dist/css assets/src/scss",
@@ -10,27 +10,37 @@
     "build:js": "npm run lint && npm run copyjs",
     "imagemin": "imagemin assets/src/img/* --out-dir=assets/dist/img",
     "build:images": "npm run imagemin",
-    "copyfonts": "copyfiles -f assets/src/fonts/* assets/dist/fonts",
     "copyjs": "copyfiles -f assets/src/js/* assets/dist/js",
-    "build:fonts": "npm run copyfonts",
-    "build:all": "npm run build:css && npm run build:js && npm run build:images && npm run build:fonts",
+    "build:all": "npm run build:css && npm run build:js && npm run build:images",
     "serve": "browser-sync start --server --files 'assets/dist/css/*.css, assets/dist/js/*.js'",
     "watch:css": "onchange 'assets/src/scss/*.scss' -- npm run build:css",
     "watch:js": "onchange 'assets/src/js/*.js' -- npm run build:js",
-    "watch:all": "parallelshell 'npm run watch:css' 'npm run watch:js'",
+    "watch:all": "parallelshell 'npm run watch:css' 'npm run watch:js' 'npm run serve'",
     "build-watch": "npm set progress=false && npm run build:all && npm run watch:all",
     "clean": "rm -r assets/dist/*"
   },
   "devDependencies": {
-    "autoprefixer": "^7.1.5",
-    "bootstrap": "^4.0.0-alpha.6",
-    "copyfiles": "^1.2.0",
+    "autoprefixer": "^9.3.1",
+    "browser-sync": "^2.26.3",
+    "copyfiles": "^2.1.0",
+    "css-loader": "^1.0.1",
+    "extract-text-webpack-plugin": "^3.0.2",
+    "imagemin": "^6.0.0",
     "imagemin-cli": "^3.0.0",
-    "jshint": "latest",
-    "node-sass": "^4.5.3",
-    "onchange": "^3.2.1",
-    "parallelshell": "^3.0.1",
-    "postcss-cli": "^4.1.1",
-    "uglify-js": "^3.1.3"
-  }
+    "jshint": "^2.9.6",
+    "mkdir": "0.0.2",
+    "node-sass": "^4.10.0",
+    "onchange": "^5.1.0",
+    "parallelshell": "^3.0.2",
+    "postcss": "^7.0.6",
+    "postcss-cli": "^6.0.1",
+    "resolve-url-loader": "^3.0.0",
+    "sass-loader": "^7.1.0",
+    "uglify-js": "^3.4.9",
+    "uglifyjs": "^2.4.11",
+    "url-loader": "^1.1.2",
+    "webpack": "^3.12.0",
+    "webpack-cli": "^3.1.2"
+  },
+  "dependencies": {}
 }
