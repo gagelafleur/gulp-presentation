@@ -1,0 +1,74 @@
+sass -
+
+gulp.src(assetsSrcPathScss+'**/*.scss')
+        .pipe(sourcemap.init())
+        .pipe(plumber())
+				.pipe(sass()
+					.on('error', function (err) {
+						sass.logError.bind(this)(err);
+					})
+				)
+				.pipe(autoprefixer())
+        .pipe(sourcemap.write())
+        .pipe(gulp.dest(assetsDistPathCss));
+
+
+sass-minify
+
+        if (minifyCSS) {
+        		safeMkdir(assetsDistPathCss);
+        		gulp.src(assetsSrcPathScss+'**/*.scss')
+        	        .pipe(plumber())
+        	        .pipe(sass({
+        	            outputStyle: 'compressed'
+        	        }).on('error', sass.logError))
+        			.pipe(rename(function (path) {
+        				path.extname = '.min.css';
+        			}))
+        	        .pipe(gulp.dest(assetsDistPathCss));
+        	}
+
+js:lint
+
+gulp.src([assetsSrcPathJs+'active-modules/*.js'])
+        .pipe(plumber())
+        .pipe(jsHint())
+				.pipe(jsHint.reporter(stylish))
+        .pipe(jsHint.reporter('fail')).on('error', function (err) {
+					gulp.src([assetsSrcPathJs+'active-modules/*.js'])
+					.pipe(plumber())
+					.pipe(jsHint());
+				});
+
+
+
+
+js:build
+
+gulp.src(paths.js)
+        .pipe(jsConcat('main.js'))
+        .pipe(gulp.dest(assetsDistPathJs))
+		.pipe(rename('main.min.js'))
+		.pipe(jsUglify().on('error', function() {}))
+		.pipe(gulp.dest(assetsDistPathJs));
+
+
+img:build
+
+gulp.src([
+	        assetsSrcPathImg+'**/*.png'
+	    	])
+        .pipe(imagemin())
+        .pipe(gulp.dest(assetsDistPathImg));
+
+
+
+serve
+
+
+browserSync.init({
+        server: "./"
+    });
+
+
+uncomment onchange in watch

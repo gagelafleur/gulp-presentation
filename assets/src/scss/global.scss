@@ -1,0 +1,30 @@
+$body-color: grey;
+$h1-color: white;
+
+body{
+  background-color: $body-color;
+
+  h1{
+    color:$h1-color;
+  }
+
+  .image-container{
+    cursor:pointer;
+    height:300px;
+    width:300px;
+    background-color: $h1-color;
+    background-image: url(../images/gulp.png);
+    background-position: center;
+    background-repeat: no-repeat;
+
+  }
+
+  .gulp-image{
+    animation:spin 4s linear infinite;
+    position: absolute;
+    top:50px;
+    right:100px;
+  }
+
+  @keyframes spin { 100% { transform:rotate(360deg); } }
+}
